@@ -4,14 +4,16 @@ public class LoginApiConstant {
 
   public static final String Login_Success =
       """
-           "isSuccess": true,
-           "code": "201",
-           "message": "요청 성공 및 리소스 생성됨",
-           "divideCode": "20101",
-           "data": {
-             "accessToken": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIxIiwiaWF0IjoxNzUwNjA0NTUxLCJleHAiOjE3NTA2MTQ1NTEsImlzcyI6Ik9NRiJ9.ETCN2arfOXAtYOFXWlv0A9-oNVR9easYJw6V-eStJ_M",
-             "refreshToken": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIxIiwiaWF0IjoxNzUwNjA0NTUxLCJleHAiOjE3NTE4MTQxNTEsImlzcyI6Ik9NRiJ9.lySiTQd6MpgzunqqdwZ5uT8YyGNN16sMGemPFoI2KqI
-           }
+           {
+                     "isSuccess": true,
+                     "code": "string",
+                     "message": "string",
+                     "divideCode": "string",
+                     "data": {
+                       "accessToken": "string",
+                       "refreshToken": "string"
+                     }
+                   }
       """;
 
   public static final String LOGIN_FAIL_NOT_VALID_PASSWORD =
