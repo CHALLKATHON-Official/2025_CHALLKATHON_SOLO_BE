@@ -5,6 +5,7 @@ import org.springframework.stereotype.Service;
 import com.example.solo.global.annotation.ReadOnlyTransactional;
 import com.example.solo.global.exception.GlobalErrorCode;
 import com.example.solo.global.exception.custom.AuthException;
+import com.example.solo.member.domain.entity.Member;
 import com.example.solo.member.domain.repository.MemberRepository;
 
 import lombok.RequiredArgsConstructor;
@@ -44,5 +45,11 @@ public class AuthQueryService {
             member -> {
               throw new AuthException(GlobalErrorCode.ALREADY_EXISTS_NICKNAME);
             });
+  }
+
+  public Member getMemberByEmail(String email) {
+    return memberRepository
+        .findByEmail(email)
+        .orElseThrow(() -> new AuthException(GlobalErrorCode.NOT_FOUND_MEMBER));
   }
 }

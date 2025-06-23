@@ -18,7 +18,7 @@ public class SignUpApiConstant {
           "isSuccess": false,
           "code": "400",
           "message": "이미 존재하는 이메일입니다.",
-          "divideCode": "4001"
+          "divideCode": "40002"
         }
         """;
 
@@ -27,8 +27,8 @@ public class SignUpApiConstant {
         {
           "isSuccess": false,
           "code": "400",
-          "message": "이미 존재하는 이메일입니다.",
-          "divideCode": "4001"
+          "message": "이미 존재하는 닉네임입니다.",
+          "divideCode": "40003"
         }
         """;
 }
