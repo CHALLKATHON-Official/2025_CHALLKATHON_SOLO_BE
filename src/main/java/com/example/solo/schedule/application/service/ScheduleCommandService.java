@@ -1,5 +1,6 @@
 package com.example.solo.schedule.application.service;
 
+import java.time.LocalDate;
 import java.time.LocalTime;
 
 import org.springframework.stereotype.Service;
@@ -24,6 +25,7 @@ public class ScheduleCommandService {
         Schedule.builder()
             .category(requestDto.category())
             .time(LocalTime.of(requestDto.hour(), requestDto.minutes()))
+            .date(LocalDate.now())
             .member(member)
             .build());
   }
