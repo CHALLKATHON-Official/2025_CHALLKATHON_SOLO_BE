@@ -18,6 +18,8 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import com.example.solo.global.exception.GlobalErrorCode;
 import com.example.solo.global.exception.custom.AuthException;
 import com.example.solo.member.application.service.AuthQueryService;
+import com.example.solo.member.domain.encrypt.BCryptPasswordEncryptor;
+import com.example.solo.member.domain.encrypt.PasswordEncryptor;
 import com.example.solo.member.domain.entity.Member;
 import com.example.solo.member.domain.entity.Password;
 import com.example.solo.member.domain.repository.MemberRepository;
@@ -29,20 +31,22 @@ public class AuthQueryServiceTest {
 
   @InjectMocks private AuthQueryService authQueryService;
 
+  private PasswordEncryptor encryptor;
   private Member member;
 
   private final String TEST_EMAIL = "test";
   private final String TEST_PASSWORD = "test1234!@#$";
   private final String TEST_NICKNAME = "test";
 
-  BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
-
   @BeforeEach
   void setUp() {
+
+    encryptor = new BCryptPasswordEncryptor(new BCryptPasswordEncoder());
+
     member =
         Member.builder()
             .email(TEST_EMAIL)
-            .password(Password.encrypt(TEST_PASSWORD, encoder))
+            .password(Password.encrypt(TEST_PASSWORD, encryptor))
             .build();
   }
 

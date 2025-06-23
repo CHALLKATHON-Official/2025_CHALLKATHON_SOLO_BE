@@ -1,4 +1,4 @@
-package com.example.solo.global.config;
+package com.example.solo.global.swagger;
 
 import java.lang.reflect.Method;
 

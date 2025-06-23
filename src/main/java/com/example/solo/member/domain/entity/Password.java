@@ -5,10 +5,9 @@ import java.util.regex.Pattern;
 import jakarta.persistence.Column;
 import jakarta.persistence.Embeddable;
 
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
-
 import com.example.solo.global.exception.GlobalErrorCode;
 import com.example.solo.global.exception.custom.MemberException;
+import com.example.solo.member.domain.encrypt.PasswordEncryptor;
 
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
@@ -27,14 +26,20 @@ public class Password {
   @Column(name = "password", nullable = false, columnDefinition = "TEXT")
   private String encryptedPassword;
 
-  public static Password encrypt(String plainPassword, BCryptPasswordEncoder encoder) {
+  public static Password encrypt(String plainPassword, PasswordEncryptor encryptor) {
     if (!isPasswordValid(plainPassword)) {
       throw new MemberException(GlobalErrorCode.NOT_VALID_PASSWORD);
     }
-    return new Password(encoder.encode(plainPassword));
+    return new Password(encryptor.encrypt(plainPassword));
   }
 
-  public static Boolean isPasswordValid(String plainPassword) {
+  private static Boolean isPasswordValid(String plainPassword) {
     return Pattern.matches(PASSWORD_REGEX, plainPassword);
+  }
+
+  public void isSamePassword(String plainPassword, PasswordEncryptor passwordEncoder) {
+    if (!passwordEncoder.matches(plainPassword, encryptedPassword)) {
+      throw new MemberException(GlobalErrorCode.NOT_VALID_PASSWORD);
+    }
   }
 }
