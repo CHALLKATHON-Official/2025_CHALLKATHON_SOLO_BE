@@ -13,6 +13,7 @@ import org.mockito.junit.jupiter.MockitoExtension;
 
 import com.example.solo.member.application.service.AuthCommandService;
 import com.example.solo.member.domain.dto.request.SignUpRequestDto;
+import com.example.solo.member.domain.encrypt.PasswordEncryptor;
 import com.example.solo.member.domain.entity.Member;
 import com.example.solo.member.domain.repository.MemberRepository;
 
@@ -20,6 +21,7 @@ import com.example.solo.member.domain.repository.MemberRepository;
 public class AuthCommandServiceTest {
 
   @Mock private MemberRepository memberRepository;
+  @Mock private PasswordEncryptor encryptor;
 
   @InjectMocks private AuthCommandService authCommandService;
 
