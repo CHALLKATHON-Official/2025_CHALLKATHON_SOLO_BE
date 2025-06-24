@@ -13,9 +13,12 @@ import com.example.solo.global.exception.GlobalErrorCode;
 import com.example.solo.global.security.domain.MemberDetail;
 import com.example.solo.schedule.application.facade.AddScheduleFacade;
 import com.example.solo.schedule.application.facade.GetMonthScheduleFacade;
+import com.example.solo.schedule.application.facade.GetScheduleCalFacade;
 import com.example.solo.schedule.controller.swaggerDocs.api.AddScheduleApiDocs;
 import com.example.solo.schedule.controller.swaggerDocs.api.GetScheduleApiDocs;
+import com.example.solo.schedule.controller.swaggerDocs.api.GetScheduleCalApiDocs;
 import com.example.solo.schedule.domain.dto.request.AddScheduleRequestDto;
+import com.example.solo.schedule.domain.dto.response.GetScheduleCalResponse;
 import com.example.solo.schedule.domain.dto.response.GetScheduleResponse;
 
 import lombok.RequiredArgsConstructor;
@@ -27,6 +30,7 @@ public class ScheduleController {
 
   private final AddScheduleFacade addScheduleFacade;
   private final GetMonthScheduleFacade getMonthScheduleFacade;
+  private final GetScheduleCalFacade getScheduleCalFacade;
 
   @SwaggerDocs(AddScheduleApiDocs.class)
   @PostMapping()
@@ -49,5 +53,19 @@ public class ScheduleController {
             BaseResponse.onSuccess(
                 GlobalErrorCode.OK,
                 getMonthScheduleFacade.getSchedules(memberDetail.getMember(), year, month)));
+  }
+
+  @SwaggerDocs(GetScheduleCalApiDocs.class)
+  @GetMapping("/cal")
+  public ResponseEntity<BaseResponse<GetScheduleCalResponse>> getScheduleCal(
+      @AuthenticationPrincipal MemberDetail memberDetail,
+      @RequestParam String category,
+      @RequestParam Integer year,
+      @RequestParam Integer month) {
+    return ResponseEntity.status(HttpStatus.OK)
+        .body(
+            BaseResponse.onSuccess(
+                getScheduleCalFacade.getScheduleCal(
+                    memberDetail.getMember(), category, year, month)));
   }
 }

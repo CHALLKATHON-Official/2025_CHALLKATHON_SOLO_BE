@@ -24,4 +24,9 @@ public class ScheduleQueryService {
         scheduleRepository.findByYearAndMonth(member.getId(), year, month);
     return mothScheduleList.stream().map(GetScheduleResponse::from).toList();
   }
+
+  public List<Schedule> getScheduleListByCategory(
+      Member member, Integer year, Integer month, String category) {
+    return scheduleRepository.findByYearAndMonthAndCategory(member.getId(), year, month, category);
+  }
 }
