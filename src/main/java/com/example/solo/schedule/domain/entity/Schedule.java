@@ -28,6 +28,9 @@ public class Schedule {
 
   private LocalDate date;
 
+  @Column(name = "scheduel_is_plan")
+  private Boolean scheduleIsPlan;
+
   @ManyToOne(fetch = FetchType.LAZY)
   @JoinColumn(name = "member_id")
   private Member member;
