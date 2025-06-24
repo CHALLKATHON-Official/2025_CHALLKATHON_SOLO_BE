@@ -19,8 +19,8 @@ public class ScheduleCommandService {
 
   private final ScheduleRepository scheduleRepository;
 
-  public void createSchedule(Member member, AddScheduleRequestDto requestDto) {
-    scheduleRepository.save(
+  public Schedule createSchedule(Member member, AddScheduleRequestDto requestDto) {
+    return scheduleRepository.save(
         Schedule.builder()
             .category(requestDto.category())
             .time(LocalTime.of(requestDto.hour(), requestDto.minutes()))
