@@ -13,12 +13,14 @@ public class GetScheduleApiConstant {
                        {
                          "duration": 5.5,
                          "date": "2025-06-23",
-                         "category": "string"
+                         "category": "string",
+                         "isPlan": true
                        },
                        {
                          "duration": 5.6666665,
                          "date": "2025-06-23",
-                         "category": "test"
+                         "category": "test",
+                         "isPlan": false
                        }
                      ]
                    }
