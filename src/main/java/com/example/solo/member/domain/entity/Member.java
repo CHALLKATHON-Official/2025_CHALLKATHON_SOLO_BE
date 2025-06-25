@@ -1,5 +1,8 @@
 package com.example.solo.member.domain.entity;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import jakarta.persistence.*;
 
 import lombok.*;
@@ -21,4 +24,10 @@ public class Member {
   @Embedded private Password password;
 
   private String nickname;
+
+  @OneToMany(mappedBy = "fromMember", cascade = CascadeType.ALL)
+  private List<Friend> fromFriends = new ArrayList<>();
+
+  @OneToMany(mappedBy = "toMember", cascade = CascadeType.ALL)
+  private List<Friend> toFriends = new ArrayList<>();
 }
