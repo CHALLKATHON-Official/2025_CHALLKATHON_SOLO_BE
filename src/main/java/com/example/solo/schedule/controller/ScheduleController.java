@@ -43,16 +43,15 @@ public class ScheduleController {
   }
 
   @SwaggerDocs(GetScheduleApiDocs.class)
-  @GetMapping
+  @GetMapping("/{memberId}")
   public ResponseEntity<BaseResponse<List<GetScheduleResponse>>> getSchedule(
-      @AuthenticationPrincipal MemberDetail memberDetail,
+      @PathVariable(name = "memberId") Long memberId,
       @RequestParam Integer year,
       @RequestParam Integer month) {
     return ResponseEntity.status(HttpStatus.OK)
         .body(
             BaseResponse.onSuccess(
-                GlobalErrorCode.OK,
-                getMonthScheduleFacade.getSchedules(memberDetail.getMember(), year, month)));
+                GlobalErrorCode.OK, getMonthScheduleFacade.getSchedules(memberId, year, month)));
   }
 
   @SwaggerDocs(GetScheduleCalApiDocs.class)
