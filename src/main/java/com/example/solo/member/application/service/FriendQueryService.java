@@ -33,4 +33,8 @@ public class FriendQueryService {
   public List<Friend> getFriendListByToMemberAndIsFriendFalse(Member member) {
     return friendRepository.findAllByToMemberAndIsFriendFalse(member);
   }
+
+  public List<Friend> getFriendListByFromMemberAndIsFriendTrue(Member member) {
+    return friendRepository.findAllByFromMemberAndIsFriendTrue(member);
+  }
 }

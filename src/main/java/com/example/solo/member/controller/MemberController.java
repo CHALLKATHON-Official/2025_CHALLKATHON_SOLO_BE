@@ -12,9 +12,11 @@ import com.example.solo.global.exception.GlobalErrorCode;
 import com.example.solo.global.security.domain.MemberDetail;
 import com.example.solo.member.application.facade.AcceptFriendRequestFacade;
 import com.example.solo.member.application.facade.GetFriendRequestFacade;
+import com.example.solo.member.application.facade.GetMyFriendListFacade;
 import com.example.solo.member.application.facade.RequestFriendFacade;
 import com.example.solo.member.domain.dto.request.FriendAcceptRequestDto;
 import com.example.solo.member.domain.dto.response.GetFriendRequestResponseDto;
+import com.example.solo.member.domain.dto.response.GetMyFriendListResponse;
 
 import lombok.RequiredArgsConstructor;
 
@@ -26,6 +28,7 @@ public class MemberController {
   private final RequestFriendFacade requestFriendFacade;
   private final GetFriendRequestFacade getFriendRequestFacade;
   private final AcceptFriendRequestFacade acceptFriendRequestFacade;
+  private final GetMyFriendListFacade getMyFriendListFacade;
 
   @PostMapping("/{targetid}/friend/request")
   public ResponseEntity<BaseResponse<Void>> requestFriend(
@@ -53,5 +56,15 @@ public class MemberController {
     acceptFriendRequestFacade.acceptFriendRequest(memberDetail.getMember(), requestDto);
     return ResponseEntity.status(HttpStatus.CREATED)
         .body(BaseResponse.onSuccess(GlobalErrorCode.CREATED, null));
+  }
+
+  @GetMapping("/my/friend")
+  public ResponseEntity<BaseResponse<GetMyFriendListResponse>> getMyFriendList(
+      @AuthenticationPrincipal MemberDetail memberDetail) {
+    return ResponseEntity.status(HttpStatus.OK)
+        .body(
+            BaseResponse.onSuccess(
+                GlobalErrorCode.OK,
+                getMyFriendListFacade.getMemberFriendList(memberDetail.getMember())));
   }
 }
