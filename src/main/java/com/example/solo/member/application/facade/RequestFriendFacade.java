@@ -21,7 +21,7 @@ public class RequestFriendFacade {
     Member targetMember = memberQueryService.getMemberById(targetMemberId);
     Boolean isFriend = friendQueryService.isFriendByFromMemberToMember(fromMember, targetMember);
     if (!isFriend) {
-      friendCommandService.createFriend(fromMember, targetMember);
+      friendCommandService.createFriend(fromMember, targetMember, false);
     }
   }
 }

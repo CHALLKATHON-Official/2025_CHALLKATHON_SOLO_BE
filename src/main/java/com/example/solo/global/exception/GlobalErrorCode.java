@@ -43,7 +43,8 @@ public enum GlobalErrorCode {
   ACCESS_DENIED(HttpStatus.FORBIDDEN, "40301", "권한이 없습니다."),
 
   // 404 NOT_FOUND
-  NOT_FOUND_MEMBER(HttpStatus.NOT_FOUND, "40404", "회원을 찾을 수 없습니다.");
+  NOT_FOUND_MEMBER(HttpStatus.NOT_FOUND, "40404", "회원을 찾을 수 없습니다."),
+  NOT_FOUND_FRIEND_REQUEST(HttpStatus.NOT_FOUND, "40405", "친구 추가 요청을 찾을 수 없습니다.");
 
   private final HttpStatus httpStatus;
   private final String divideCode;

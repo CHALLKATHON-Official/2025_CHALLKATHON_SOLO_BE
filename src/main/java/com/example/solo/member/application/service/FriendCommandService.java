@@ -16,7 +16,13 @@ public class FriendCommandService {
 
   private final FriendRepository friendRepository;
 
-  public void createFriend(Member fromMember, Member toMember) {
-    friendRepository.save(Friend.builder().fromMember(fromMember).toMember(toMember).build());
+  public void createFriend(Member fromMember, Member toMember, Boolean isFriend) {
+    friendRepository.save(
+        Friend.builder().fromMember(fromMember).toMember(toMember).isFriend(isFriend).build());
+  }
+
+  public void setIsFriend(Friend friend, Boolean isFriend) {
+    friend.setIsFriend(isFriend);
+    friendRepository.save(friend);
   }
 }
