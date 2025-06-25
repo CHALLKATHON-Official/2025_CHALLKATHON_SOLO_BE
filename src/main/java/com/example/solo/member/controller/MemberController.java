@@ -15,6 +15,7 @@ import com.example.solo.member.application.facade.GetFriendRequestFacade;
 import com.example.solo.member.application.facade.RequestFriendFacade;
 import com.example.solo.member.domain.dto.request.FriendAcceptRequestDto;
 import com.example.solo.member.domain.dto.response.GetFriendRequestResponseDto;
+import com.example.solo.schedule.domain.dto.request.FriendRequestDto;
 
 import lombok.RequiredArgsConstructor;
 
@@ -27,11 +28,11 @@ public class MemberController {
   private final GetFriendRequestFacade getFriendRequestFacade;
   private final AcceptFriendRequestFacade acceptFriendRequestFacade;
 
-  @PostMapping("/{targetid}/friend/request")
+  @PostMapping("/friend/request")
   public ResponseEntity<BaseResponse<Void>> requestFriend(
       @AuthenticationPrincipal MemberDetail memberDetail,
-      @PathVariable(name = "targetid") Long targetId) {
-    requestFriendFacade.requestFriend(memberDetail.getMember(), targetId);
+      @RequestBody FriendRequestDto requestDto) {
+    requestFriendFacade.requestFriend(memberDetail.getMember(), requestDto);
     return ResponseEntity.status(HttpStatus.CREATED)
         .body(BaseResponse.onSuccess(GlobalErrorCode.CREATED, null));
   }

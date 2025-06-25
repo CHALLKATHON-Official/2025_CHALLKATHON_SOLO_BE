@@ -22,4 +22,10 @@ public class MemberQueryService {
         .findById(memberId)
         .orElseThrow(() -> new MemberException(GlobalErrorCode.NOT_FOUND_MEMBER));
   }
+
+  public Member getMemberByNickname(String nickname) {
+    return memberRepository
+        .findByNickname(nickname)
+        .orElseThrow(() -> new MemberException(GlobalErrorCode.NOT_FOUND_MEMBER));
+  }
 }
