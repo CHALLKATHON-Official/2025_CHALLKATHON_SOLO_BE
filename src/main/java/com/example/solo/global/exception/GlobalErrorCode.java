@@ -32,6 +32,7 @@ public enum GlobalErrorCode {
   NOT_VALID_PASSWORD(HttpStatus.BAD_REQUEST, "40001", "비밀번호가 일치하지 않습니다."),
   ALREADY_EXISTS_EMAIL(HttpStatus.BAD_REQUEST, "40002", "이미 존재하는 이메일입니다."),
   ALREADY_EXISTS_NICKNAME(HttpStatus.BAD_REQUEST, "40003", "이미 존재하는 닉네임입니다."),
+  ALREADY_FRIEND(HttpStatus.BAD_REQUEST, "40004", "이미 친구입니다."),
 
   // 401 UNAUTHORIZED
   TOKEN_EXPIRED(HttpStatus.UNAUTHORIZED, "40101", "토큰의 유효기간이 지났습니다."),
@@ -42,7 +43,8 @@ public enum GlobalErrorCode {
   ACCESS_DENIED(HttpStatus.FORBIDDEN, "40301", "권한이 없습니다."),
 
   // 404 NOT_FOUND
-  NOT_FOUND_MEMBER(HttpStatus.NOT_FOUND, "40404", "회원을 찾을 수 없습니다.");
+  NOT_FOUND_MEMBER(HttpStatus.NOT_FOUND, "40404", "회원을 찾을 수 없습니다."),
+  NOT_FOUND_FRIEND_REQUEST(HttpStatus.NOT_FOUND, "40405", "친구 추가 요청을 찾을 수 없습니다.");
 
   private final HttpStatus httpStatus;
   private final String divideCode;
