@@ -14,6 +14,7 @@ import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.test.context.ActiveProfiles;
 
 import com.example.solo.global.exception.GlobalErrorCode;
 import com.example.solo.global.exception.custom.AuthException;
@@ -24,6 +25,7 @@ import com.example.solo.member.domain.entity.Member;
 import com.example.solo.member.domain.entity.Password;
 import com.example.solo.member.domain.repository.MemberRepository;
 
+@ActiveProfiles("test")
 @ExtendWith(MockitoExtension.class)
 public class AuthQueryServiceTest {
 

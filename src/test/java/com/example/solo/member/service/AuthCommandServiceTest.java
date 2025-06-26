@@ -10,6 +10,7 @@ import org.mockito.ArgumentCaptor;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
+import org.springframework.test.context.ActiveProfiles;
 
 import com.example.solo.member.application.service.AuthCommandService;
 import com.example.solo.member.domain.dto.request.SignUpRequestDto;
@@ -17,6 +18,7 @@ import com.example.solo.member.domain.encrypt.PasswordEncryptor;
 import com.example.solo.member.domain.entity.Member;
 import com.example.solo.member.domain.repository.MemberRepository;
 
+@ActiveProfiles("test")
 @ExtendWith(MockitoExtension.class)
 public class AuthCommandServiceTest {
 
