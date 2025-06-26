@@ -1,10 +1,13 @@
 package com.example.solo.schedule.application.service;
 
+import java.time.LocalDate;
 import java.util.List;
 
 import org.springframework.stereotype.Service;
 
 import com.example.solo.global.annotation.ReadOnlyTransactional;
+import com.example.solo.global.exception.GlobalErrorCode;
+import com.example.solo.global.exception.custom.ScheduleException;
 import com.example.solo.member.domain.entity.Member;
 import com.example.solo.schedule.domain.dto.response.GetScheduleResponse;
 import com.example.solo.schedule.domain.entity.Schedule;
@@ -23,5 +26,12 @@ public class ScheduleQueryService {
     List<Schedule> mothScheduleList =
         scheduleRepository.findByYearAndMonth(member.getId(), year, month);
     return mothScheduleList.stream().map(GetScheduleResponse::from).toList();
+  }
+
+  public void checkIsSchedule(Member member, String category, LocalDate date) {
+    if (scheduleRepository.existsByMemberAndCategoryAndDate(member, category, date)) {
+      throw new ScheduleException(GlobalErrorCode.ALREADY_EXISTS_SCHEDULE);
+    }
+    ;
   }
 }
