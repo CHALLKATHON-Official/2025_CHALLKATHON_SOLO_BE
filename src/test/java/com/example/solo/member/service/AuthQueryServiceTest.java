@@ -109,4 +109,36 @@ public class AuthQueryServiceTest {
       assertEquals(GlobalErrorCode.ALREADY_EXISTS_NICKNAME, exception.getErrorCode());
     }
   }
+
+  @Nested
+  @DisplayName("이메일을 통해 회원을 조회한다.")
+  class getMemberByEmail {
+
+    @Test
+    @DisplayName("회원이 존재하면 회원을 반환한다.")
+    void getMemberByEmailSuccess() {
+      // give
+      when(memberRepository.findByEmail(TEST_EMAIL)).thenReturn(Optional.of(member));
+
+      // when
+      Member result = authQueryService.getMemberByEmail(TEST_EMAIL);
+
+      // then
+      assertEquals(member, result);
+    }
+
+    @Test
+    @DisplayName("회원이 존재하지 않으면 예외를 던진다.")
+    void getMemberByEmailFailNotFoundMember() {
+      // give
+      when(memberRepository.findByEmail(TEST_EMAIL)).thenReturn(Optional.empty());
+
+      // when
+      AuthException exception =
+          assertThrows(AuthException.class, () -> authQueryService.getMemberByEmail(TEST_EMAIL));
+
+      // then
+      assertEquals(GlobalErrorCode.NOT_FOUND_MEMBER, exception.getErrorCode());
+    }
+  }
 }
