@@ -1,4 +1,4 @@
-package com.example.solo.member.facade;
+package com.example.solo.member.application.facade;
 
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 
@@ -11,7 +11,6 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.test.context.ActiveProfiles;
 
-import com.example.solo.member.application.facade.LoginFacade;
 import com.example.solo.member.domain.dto.request.LoginRequestDto;
 import com.example.solo.member.domain.dto.response.AuthTokenResponse;
 import com.example.solo.member.domain.encrypt.BCryptPasswordEncryptor;

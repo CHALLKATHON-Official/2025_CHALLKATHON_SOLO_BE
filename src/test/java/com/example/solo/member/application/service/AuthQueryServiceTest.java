@@ -1,4 +1,4 @@
-package com.example.solo.member.service;
+package com.example.solo.member.application.service;
 
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.when;
@@ -18,7 +18,6 @@ import org.springframework.test.context.ActiveProfiles;
 
 import com.example.solo.global.exception.GlobalErrorCode;
 import com.example.solo.global.exception.custom.AuthException;
-import com.example.solo.member.application.service.AuthQueryService;
 import com.example.solo.member.domain.encrypt.BCryptPasswordEncryptor;
 import com.example.solo.member.domain.encrypt.PasswordEncryptor;
 import com.example.solo.member.domain.entity.Member;

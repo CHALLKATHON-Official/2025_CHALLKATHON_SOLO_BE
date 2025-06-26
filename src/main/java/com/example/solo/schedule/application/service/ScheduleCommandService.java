@@ -3,6 +3,7 @@ package com.example.solo.schedule.application.service;
 import java.time.LocalDate;
 import java.time.LocalTime;
 
+import org.springframework.cache.annotation.CacheEvict;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -26,6 +27,10 @@ public class ScheduleCommandService {
    * @param member 해당 회원
    * @param requestDto {@link AddScheduleRequestDto} (카테고리, 시간, 분)
    */
+  @CacheEvict(
+      value = "monthlySchedules",
+      key =
+          "#member.id + '_' + T(java.time.LocalDate).now().year + '_' + T(java.time.LocalDate).now().monthValue")
   public void createSchedule(Member member, AddScheduleRequestDto requestDto) {
     scheduleRepository.save(
         Schedule.builder()

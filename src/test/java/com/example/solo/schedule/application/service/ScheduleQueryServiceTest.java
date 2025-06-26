@@ -1,4 +1,4 @@
-package com.example.solo.schedule.service;
+package com.example.solo.schedule.application.service;
 
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.when;
@@ -24,7 +24,6 @@ import com.example.solo.member.domain.encrypt.BCryptPasswordEncryptor;
 import com.example.solo.member.domain.encrypt.PasswordEncryptor;
 import com.example.solo.member.domain.entity.Member;
 import com.example.solo.member.domain.entity.Password;
-import com.example.solo.schedule.application.service.ScheduleQueryService;
 import com.example.solo.schedule.domain.dto.response.GetScheduleResponse;
 import com.example.solo.schedule.domain.entity.Schedule;
 import com.example.solo.schedule.domain.repository.ScheduleRepository;

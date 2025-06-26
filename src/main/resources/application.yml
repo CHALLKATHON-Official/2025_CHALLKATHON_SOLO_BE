@@ -27,3 +27,8 @@ jwt:
   access-token-validity: 10000000
   refresh-token-validity: 1209600000
 
+---
+#cache
+spring:
+  cache:
+    type: caffeine

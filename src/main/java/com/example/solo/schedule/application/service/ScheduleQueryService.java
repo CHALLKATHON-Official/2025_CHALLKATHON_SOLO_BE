@@ -3,6 +3,7 @@ package com.example.solo.schedule.application.service;
 import java.time.LocalDate;
 import java.util.List;
 
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 
 import com.example.solo.global.annotation.ReadOnlyTransactional;
@@ -30,6 +31,7 @@ public class ScheduleQueryService {
    * @param month 조회 월
    * @return List<GetScheduleResponse>
    */
+  @Cacheable(value = "monthlySchedules", key = "#member.id + '_' + #year + '_' + #month")
   public List<GetScheduleResponse> getSchedules(Member member, Integer year, Integer month) {
     List<Schedule> mothScheduleList =
         scheduleRepository.findByYearAndMonth(member.getId(), year, month);

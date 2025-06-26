@@ -1,4 +1,4 @@
-package com.example.solo.member.service;
+package com.example.solo.member.application.service;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.mockito.Mockito.verify;
@@ -12,7 +12,6 @@ import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 import org.springframework.test.context.ActiveProfiles;
 
-import com.example.solo.member.application.service.AuthCommandService;
 import com.example.solo.member.domain.dto.request.SignUpRequestDto;
 import com.example.solo.member.domain.encrypt.PasswordEncryptor;
 import com.example.solo.member.domain.entity.Member;

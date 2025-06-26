@@ -1,6 +1,11 @@
-package com.example.solo.schedule.facade;
+package com.example.solo.schedule.application.facade;
 
-import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+
+import java.time.LocalDate;
+import java.time.LocalTime;
+import java.util.List;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
@@ -16,16 +21,16 @@ import com.example.solo.member.domain.encrypt.PasswordEncryptor;
 import com.example.solo.member.domain.entity.Member;
 import com.example.solo.member.domain.entity.Password;
 import com.example.solo.member.domain.repository.MemberRepository;
-import com.example.solo.schedule.application.facade.AddScheduleFacade;
-import com.example.solo.schedule.domain.dto.request.AddScheduleRequestDto;
+import com.example.solo.schedule.domain.dto.response.GetScheduleResponse;
+import com.example.solo.schedule.domain.entity.Schedule;
 import com.example.solo.schedule.domain.repository.ScheduleRepository;
 
 @ActiveProfiles("test")
 @SpringBootTest
 @AutoConfigureMockMvc
-public class AddScheduleFacadeTest {
+public class GetMonthScheduleFacadeTest {
 
-  @Autowired private AddScheduleFacade addScheduleFacade;
+  @Autowired private GetMonthScheduleFacade getMonthScheduleFacade;
   @Autowired private MemberRepository memberRepository;
   @Autowired private ScheduleRepository scheduleRepository;
 
@@ -52,16 +57,26 @@ public class AddScheduleFacadeTest {
             .build();
 
     memberRepository.save(member);
+
+    scheduleRepository.save(
+        Schedule.builder()
+            .member(member)
+            .category(TEST_CATEGORY)
+            .date(LocalDate.now())
+            .time(LocalTime.of(TEST_HOUR, TEST_MINUTES))
+            .build());
   }
 
   @Test
-  @DisplayName("일정을 생성한다.")
-  void addSchedule() {
-    // given
-    AddScheduleRequestDto requestDto =
-        new AddScheduleRequestDto(TEST_CATEGORY, TEST_HOUR, TEST_MINUTES);
+  @DisplayName("일정을 조회한다.")
+  void getMonthScheduleSuccess() {
+    // when
+    List<GetScheduleResponse> result =
+        getMonthScheduleFacade.getSchedules(
+            member, LocalDate.now().getYear(), LocalDate.now().getMonthValue());
 
-    // when + then
-    assertDoesNotThrow(() -> addScheduleFacade.addSchedule(member, requestDto));
+    // then
+    assertEquals(1, result.size());
+    assertTrue(result.stream().anyMatch(s -> s.category().equals(TEST_CATEGORY)));
   }
 }

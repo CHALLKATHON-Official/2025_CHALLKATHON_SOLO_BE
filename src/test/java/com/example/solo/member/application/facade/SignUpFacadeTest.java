@@ -1,4 +1,4 @@
-package com.example.solo.member.facade;
+package com.example.solo.member.application.facade;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
@@ -10,7 +10,6 @@ import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMock
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.ActiveProfiles;
 
-import com.example.solo.member.application.facade.SignUpFacade;
 import com.example.solo.member.domain.dto.request.SignUpRequestDto;
 import com.example.solo.member.domain.entity.Member;
 import com.example.solo.member.domain.repository.MemberRepository;
