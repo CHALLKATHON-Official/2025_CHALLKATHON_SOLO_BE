@@ -32,6 +32,7 @@ public enum GlobalErrorCode {
   NOT_VALID_PASSWORD(HttpStatus.BAD_REQUEST, "40001", "비밀번호가 일치하지 않습니다."),
   ALREADY_EXISTS_EMAIL(HttpStatus.BAD_REQUEST, "40002", "이미 존재하는 이메일입니다."),
   ALREADY_EXISTS_NICKNAME(HttpStatus.BAD_REQUEST, "40003", "이미 존재하는 닉네임입니다."),
+  ALREADY_EXISTS_SCHEDULE(HttpStatus.BAD_REQUEST, "40004", "이미 일정이 존재합니다."),
 
   // 401 UNAUTHORIZED
   TOKEN_EXPIRED(HttpStatus.UNAUTHORIZED, "40101", "토큰의 유효기간이 지났습니다."),
