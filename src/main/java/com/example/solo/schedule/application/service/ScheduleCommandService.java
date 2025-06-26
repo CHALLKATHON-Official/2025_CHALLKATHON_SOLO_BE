@@ -20,6 +20,12 @@ public class ScheduleCommandService {
 
   private final ScheduleRepository scheduleRepository;
 
+  /**
+   * 일정을 생성한다.
+   *
+   * @param member 해당 회원
+   * @param requestDto {@link AddScheduleRequestDto} (카테고리, 시간, 분)
+   */
   public void createSchedule(Member member, AddScheduleRequestDto requestDto) {
     scheduleRepository.save(
         Schedule.builder()

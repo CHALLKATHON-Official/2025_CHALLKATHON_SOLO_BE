@@ -47,6 +47,13 @@ public class AuthQueryService {
             });
   }
 
+  /**
+   * 이메일을 통해 회원을 조회합니다.
+   *
+   * @param email
+   * @return Member
+   * @throws AuthException (@Code GlobalException.NOT_FOUND_MEMBER) - 회원을 찾을 수 없습니다.
+   */
   public Member getMemberByEmail(String email) {
     return memberRepository
         .findByEmail(email)
